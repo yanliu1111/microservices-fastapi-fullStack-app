@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.background import BackgroundTasks
 from redis_om import get_redis_connection, HashModel
 from dotenv import load_dotenv
 from starlette.requests import Request
-import requests
-
+import requests, time
 import os
+
 load_dotenv()  # Load environment variables from the .env file
 app = FastAPI()
 
@@ -35,21 +36,32 @@ class Order(HashModel):
     class Meta:
         database = redis
     
-    @app.post('/orders')
-    async def create(request: Request): # id, quantity
-        body = await request.json()
+@app.get('/orders/{pk}')
+def get(pk: str):
+    return Order.get(pk)
 
-        req = requests.get(f'http://localhost:8000/products/%s' % body['id'])
-        # converted: %s to % body['id']
-        product = req.json()
-        order = Order(
-            product_id=product['id'],
-            price=product['price'],
-            fee=product['price'] * 0.2,
-            total=product['price'] * 1.2,
-            quantity=body['quantity'],
-            status='pending'
-        )
+@app.post('/orders')
+async def create(request: Request, background_tasks: BackgroundTasks): # id, quantity
+    body = await request.json()
 
+    req = requests.get(f'http://localhost:8000/products/%s' % body['id'])
+    # converted: %s to % body['id']
+    product = req.json()
+    order = Order(
+        product_id=body['id'],
+        price=product['price'],
+        fee=product['price'] * 0.2,
+        total=product['price'] * 1.2,
+        quantity=body['quantity'],
+        status='pending'
+    )
+
+    order.save()
+    background_tasks.add_task(order_completed, order)
+
+    return order
+    
+def order_completed(order: Order):
+        time.sleep(5)
+        order.status = 'completed'
         order.save()
-        return order
