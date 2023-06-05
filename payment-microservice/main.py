@@ -41,4 +41,15 @@ class Order(HashModel):
 
         req = requests.get(f'http://localhost:8000/products/%s' % body['id'])
         # converted: %s to % body['id']
-        return req.json()
+        product = req.json()
+        order = Order(
+            product_id=product['id'],
+            price=product['price'],
+            fee=product['price'] * 0.2,
+            total=product['price'] * 1.2,
+            quantity=body['quantity'],
+            status='pending'
+        )
+
+        order.save()
+        return order
