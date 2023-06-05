@@ -10,3 +10,17 @@ This project is building ecommerce full application includes client side using R
 - Microservices
 - Redis-om
 - Redis-Stream
+
+## Start the project
+
+In invertory-microservice directory run the following command:
+
+```bash
+uvicorn main:app --reload
+```
+
+In payment-microservice directory run the following command:
+
+```bash
+uvicorn main:app --reload --port=8001
+```
