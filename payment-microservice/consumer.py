@@ -23,3 +23,5 @@ while True:
     except Exception as e:
         print (str(e))
     time.sleep(1)
+
+##BUGFIX:redis server is not running

@@ -67,3 +67,5 @@ def order_completed(order: Order):
         order.status = 'completed'
         order.save()
         redis.xadd('order_completed', order.dict(), '*')
+
+##BUGFIX:redis server is not running
