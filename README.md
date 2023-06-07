@@ -1,10 +1,10 @@
-# Microservices-FASTAPI-REDIS-project
+# Inventory and Payment application with Microservices architecture
 
-## Description
+## 🎯 Description
 
 This project is building ecommerce full application includes client side using ReactJS and server side using Microservices architecture with FastAPI and Redis as a database. There are two microservices, one for products and the other for orders. I used Redis Stream as message broker among microservices and Redis database.
 
-## Teck Stack
+## 🔗 Teck Stack
 
 - ✅ FastAPI
 - ✅ Microservices
@@ -16,7 +16,7 @@ This project is building ecommerce full application includes client side using R
 - ✅ React-Router-Dom
 - ✅ Bootstrap-Dashboard
 
-## Start the project
+## 🚀 Start the project
 
 In invertory-microservice directory run the following command:
 
@@ -36,7 +36,7 @@ uvicorn main:app --reload --port=8001
 python consumer.py
 ```
 
-## Learning Notes
+## 📚 Learning Notes
 
 1. FASTAPI.**BACKGROUND TASKS** is used to run a function in the background. It is useful for tasks that need to run after a request, but that the client doesn't really have to be waiting for the result. **What is different between Background task and message queue**, is that background task is not persistent, it will be lost if the server is restarted. So, it is not suitable for long running tasks. For long running tasks, we need to use message queue.
 2. Some workflows for MVC.
