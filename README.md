@@ -14,6 +14,7 @@ This project is building ecommerce full application includes client side using R
 - ✅ TypeScript
 - ✅ Vite
 - ✅ React-Router-Dom
+- ✅ Bootstrap-Dashboard
 
 ## Start the project
 
@@ -102,3 +103,22 @@ And tsconfig.node.json file, changed the following:
 ```json
 "moduleResolution": "node16",
 ```
+
+4.Microservices architecture for frontend building. I should build two frontend React apps, one for inventory and the other for payment. But for this demo, I used one proxy to create two services connection. In real world, we should use two frontend apps.
+
+```ts
+server: {
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+      "/app": {
+        target: "http://127.0.0.1:8001",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/app/, ""),
+      },
+```
+
+> 💖 Hope this project can help you to understand Microservices architecture and Redis Stream.If you like it, please give me a star ✨. I need your support to keep going. Thank you so much! 💖
