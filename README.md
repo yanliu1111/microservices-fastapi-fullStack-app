@@ -6,10 +6,14 @@ This project is building ecommerce full application includes client side using R
 
 ## Teck Stack
 
-- FastAPI
-- Microservices
-- Redis-om
-- Redis-Stream
+- ✅ FastAPI
+- ✅ Microservices
+- ✅ Redis-om
+- ✅ Redis-Stream
+- ✅ React
+- ✅ TypeScript
+- ✅ Vite
+- ✅ React-Router-Dom
 
 ## Start the project
 
