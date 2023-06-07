@@ -121,4 +121,4 @@ server: {
       },
 ```
 
-> 💖 Hope this project can help you to understand Microservices architecture and Redis Stream.If you like it, please give me a star ✨. I need your support to keep going. Thank you so much! 💖
+> 💖 Hope this project can help you to understand Microservices architecture and Redis Stream. If you like it, please give me a star ✨. I need your support to keep going. Thank you so much! 💖
