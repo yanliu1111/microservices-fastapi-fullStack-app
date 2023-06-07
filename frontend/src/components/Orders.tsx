@@ -1,9 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Orders = () => {
   const [id, setId] = useState("");
   const [quantity, setQuantity] = useState("");
   const [message, setMessage] = useState("Buy your favorite product");
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (id) {
+          const response = await fetch(`/api/products/${id}`);
+          const content = await response.json();
+          const price = parseFloat(content.price) * 1.05;
+          setMessage(`The price of ${content.name} is $${price}`);
+        }
+      } catch (error) {
+        setMessage("Product not found");
+      }
+    })();
+  }, [id]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
