@@ -92,3 +92,9 @@ Status changed to refunded because the product was deleted in inventory, there i
   "moduleResolution": "node",
   "allowSyntheticDefaultImports": true,
 ```
+
+And tsconfig.node.json file, changed the following:
+
+```json
+"moduleResolution": "node16",
+```
