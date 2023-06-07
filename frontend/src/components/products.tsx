@@ -22,6 +22,16 @@ const Products = () => {
     })();
   }, []);
 
+  const del = async (id: number) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      await fetch(`/api/products/${id}`, {
+        method: "DELETE",
+      });
+
+      setProducts(products.filter((p) => p.id !== id));
+    }
+  };
+
   return (
     <Wrapper>
       <div className="pt-3 pb-2 mb-3 border-bottom">
@@ -50,7 +60,11 @@ const Products = () => {
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
                   <td>
-                    <a href="#" className="btn btn-outline-secondary btn-sm">
+                    <a
+                      href="#"
+                      className="btn btn-outline-secondary btn-sm"
+                      onClick={() => del(product.id)}
+                    >
                       Delete
                     </a>
                   </td>
