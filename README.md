@@ -84,7 +84,7 @@ Order this product id in `http://localhost:8001/orders/`
 
 Status changed to refunded because the product was deleted in inventory, there is time limit setting for this case.
 
-3. ✨ Initial setup for ReactTS (frontend).
+3. Initial setup for ReactTS (frontend).
    Change the following in tsconfig.json, and remove `"allowImportingTsExtensions": true,`
 
 ```json
