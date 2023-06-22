@@ -4,6 +4,20 @@
 
 This project is building ecommerce full application includes client side using ReactJS and server side using Microservices architecture with FastAPI and Redis as a database. There are two microservices, one for products and the other for orders. I used Redis Stream as message broker among microservices and Redis database.
 
+## 💹 Flowchart
+
+```mermaid
+sequenceDiagram
+    par Client to Microservice-Payment
+        Client->>Microservice-Payment: Place an order for the items
+    and Client to Microservice-Inventory
+        Client->>Microservice-Inventory: Search and browse the products
+    end
+    Microservice-Payment-->>Client: Retrieve client's order details
+    Microservice-Inventory-->>Client: Retrieve the details of the products
+    Microservice-Payment ->> Microservice-Inventory: Update the Inventory
+```
+
 ## 🔗 Teck Stack
 
 - ✅ FastAPI
