@@ -8,14 +8,28 @@ This project is building ecommerce full application includes client side using R
 
 ```mermaid
 sequenceDiagram
+    participant Client
+    participant Microservice-Payment
+    participant Microservice-Inventory
+    participant Microservice-Order
+
     par Client to Microservice-Payment
-        Client->>Microservice-Payment: Place an order for the items
+        Client->>Microservice-Payment: Place an order for items
     and Client to Microservice-Inventory
-        Client->>Microservice-Inventory: Search and browse the products
+        Client->>Microservice-Inventory: Search and browse products
     end
-    Microservice-Payment-->>Client: Retrieve client's order details
-    Microservice-Inventory-->>Client: Retrieve the details of the products
-    Microservice-Payment ->> Microservice-Inventory: Update the Inventory
+
+    Microservice-Payment-->>Client: Retrieve order details
+    Microservice-Inventory-->>Client: Retrieve product details
+
+    Microservice-Payment ->> Microservice-Inventory: Reserve/Update Inventory
+    Microservice-Inventory-->>Microservice-Payment: Inventory confirmation
+
+    Microservice-Payment ->> Microservice-Order: Create Order Entry
+    Microservice-Order-->>Microservice-Payment: Order Confirmation
+
+    Microservice-Payment-->>Client: Payment Confirmation & Order Receipt
+
 ```
 
 ## 🔗 Teck Stack
